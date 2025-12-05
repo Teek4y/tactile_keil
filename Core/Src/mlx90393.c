@@ -203,9 +203,23 @@ uint8_t mlx_config(void){
 	uint8_t i = 0;
 
 	for(i = 0; i<12; i++){
-		code = mlx_write_reg(mlx_addr[i], 0x02, 0x1813);
+		code = mlx_write_reg(mlx_addr[i], 0x00, CONF00);
 		if(code != HAL_OK){
-			return code*10+i;
+			return code*0x10+i;
+		}
+		HAL_Delay(2);
+  	}
+	for(i = 0; i<12; i++){
+		code = mlx_write_reg(mlx_addr[i], 0x01, CONF01);
+		if(code != HAL_OK){
+			return code*0x20+i;
+		}
+		HAL_Delay(2);
+  	}
+	for(i = 0; i<12; i++){
+		code = mlx_write_reg(mlx_addr[i], 0x02, CONF02);
+		if(code != HAL_OK){
+			return code*0x30+i;
 		}
 		HAL_Delay(2);
   	}

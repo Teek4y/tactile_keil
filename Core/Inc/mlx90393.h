@@ -1,6 +1,31 @@
 #include <stdio.h>
 #include "i2c.h"
 
+#define OP_CONF 0x1813//0x1813
+
+#define BIST 0x0000 // 0x0000
+#define Z_SERIES 0x0000 //0x0000
+#define GAIN_SEL 0x0000 //0x0070
+#define HALLCONF 0x000C //0x000C
+#define CONF00 (BIST | Z_SERIES | GAIN_SEL | HALLCONF)
+
+#define TRIG_INT 0x0000
+#define COMM_MODE 0x0000
+#define WOC_DIFF 0x0000
+#define EXT_TRG 0x0000
+#define TCMP_EN 0x0000
+#define BURST_SEL 0x0000
+#define BURST_DATARATE 0x0000
+#define CONF01 (TRIG_INT | COMM_MODE | WOC_DIFF | EXT_TRG | TCMP_EN | BURST_SEL | BURST_DATARATE)
+
+#define OSR2 0x0000
+#define RES_Z (0x0<<9)  //[0x0]|0x1|0x2|0x3
+#define RES_Y (0x0<<7)  //[0x0]|0x1|0x2|0x3
+#define RES_X (0x0<<5)  //[0x0]|0x1|0x2|0x3
+#define DIG_FILT 0x0000
+#define OSR 0x0000
+// #define CONF02 = OSR2 | RES_Z | RES_Y | RES_X | DIG_FILT | OSR
+#define CONF02 0x1813
 extern const uint8_t mlx_addr[12];
 extern uint8_t * stat;
 extern uint8_t data[9];
